@@ -1,6 +1,6 @@
 # harness-everythings
 
-领域无关的 Agent 生产治理内核。clean-room 实现：仅消费当前已批准的产品合同（`products/harness-everythings/SPEC.md` 等），不包含任何历史实现材料。
+领域无关的 Agent 生产治理内核。clean-room 实现：仅消费当前已批准的产品合同，不包含任何历史实现材料。完整权威合同保存在作品集工作区 `products/harness-everythings/`；本仓库提供公开实施摘要和运行时代码。
 
 当前状态：治理控制面的 H4/H5/H6 合同和 H7 对抗 fixture 已完成本地修补复验，但真实工作流编排尚未实现。当前 CLI 不启动 Agent、不分派任务，也不驱动真实审核、返工或跨会话恢复；现有闭环测试只证明记录合同自洽。当前结论为 `revise`。
 
