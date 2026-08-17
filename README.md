@@ -2,7 +2,9 @@
 
 领域无关的 Agent 生产治理内核。clean-room 实现：仅消费当前已批准的产品合同（`products/harness-everythings/SPEC.md` 等），不包含任何历史实现材料。
 
-当前状态：H4/H5/H6 合同闭环和 H7 对抗 fixture 已完成本地修补复验；H7 独立包/POSIX/外部独立复核仍未完成，当前结论为 `revise`，不执行发布。
+当前状态：治理控制面的 H4/H5/H6 合同和 H7 对抗 fixture 已完成本地修补复验，但真实工作流编排尚未实现。当前 CLI 不启动 Agent、不分派任务，也不驱动真实审核、返工或跨会话恢复；现有闭环测试只证明记录合同自洽。当前结论为 `revise`。
+
+下一优先级是 H3.2：实现供应商无关的编排协议，先适配 Codex 和 Claude Code 并完成真实工作流，再实现 Pi 四工具加 subagent extension 的原生运行时；DeepSeek Harness 插件作为后续可选集成形态。实施边界和退出条件见 [`docs/runtime-orchestration.md`](docs/runtime-orchestration.md)。
 
 ## 运行要求
 
@@ -44,4 +46,4 @@ H3 接入的生命周期输出：`diff` 比较角色注册表、上下文路由�
 
 ## 里程碑
 
-H1 -> H2 -> H3 -> H4 -> H5 -> H6 -> H7，见 `docs/` 与产品 PLAN.md。
+H1 -> H2 -> H3 -> H3.2（真实编排）-> 重新验收 H4/H5/H6 -> H7，见 `docs/` 与产品 PLAN.md。
