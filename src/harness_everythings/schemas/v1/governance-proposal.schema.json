@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/governance-proposal.schema.json",
+  "title": "GovernanceProposal",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_id",
+    "entity_type",
+    "created_at",
+    "updated_at",
+    "source_ref",
+    "proposed_change",
+    "evidence_refs",
+    "risks",
+    "rollback_plan",
+    "approval_state"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_id": { "type": "string" },
+    "entity_type": { "const": "governance-proposal" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "proposed_change": { "type": "object" },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "risks": { "type": "array", "items": { "type": "object" } },
+    "rollback_plan": { "type": "object" },
+    "approval_state": {
+      "enum": ["proposed", "approved", "rejected", "withdrawn"]
+    }
+  }
+}

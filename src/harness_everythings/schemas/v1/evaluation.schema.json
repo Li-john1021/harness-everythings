@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/evaluation.schema.json",
+  "title": "Evaluation",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "evaluation_id", "evaluator", "status", "consumption", "result_ref", "user_confirmed", "event_id", "event_kind", "record_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "evaluation" },
+    "evaluation_id": { "type": "string" },
+    "evaluator": { "type": "string" },
+    "status": { "enum": ["registered", "passed", "failed", "blocked"] },
+    "consumption": { "enum": ["unconsumed", "manual", "consumed"] },
+    "result_ref": { "type": "string" },
+    "user_confirmed": { "type": "boolean" }
+    ,"event_id": { "type": "string" }
+    ,"event_kind": { "enum": ["registered", "consumed"] }
+    ,"record_fingerprint": { "type": "string" }
+  }
+}

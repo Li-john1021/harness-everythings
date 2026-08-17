@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/evidence-events.schema.json",
+  "title": "EvidenceEvents",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "owner_ref", "events", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "evidence-events" },
+    "owner_ref": { "type": "string" },
+    "events": { "type": "array", "items": { "$ref": "evidence.schema.json" } },
+    "fingerprint": { "type": "string" }
+  }
+}

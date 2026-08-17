@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/content-review-check.schema.json",
+  "title": "ContentReviewCheck",
+  "type": "object",
+  "required": ["check_id", "category", "observed", "expected", "status", "evidence_refs", "basis"],
+  "additionalProperties": false,
+  "properties": {
+    "check_id": { "type": "string" },
+    "category": { "type": "string" },
+    "observed": {},
+    "expected": {},
+    "status": { "enum": ["passed", "failed", "blocked"] },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "basis": { "type": "string" }
+  }
+}

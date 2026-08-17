@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/content-delivery-state.schema.json",
+  "title": "ContentDeliveryState",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "brief_ref", "brief_fingerprint", "variant_ref", "review_ref", "review_fingerprint", "work_product_approval_ref", "lifecycle_state", "external_release_state", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "content-delivery-state" },
+    "brief_ref": { "type": "string" },
+    "brief_fingerprint": { "type": "string" },
+    "variant_ref": { "type": "string" },
+    "review_ref": { "type": "string" },
+    "review_fingerprint": { "type": "string" },
+    "work_product_approval_ref": { "type": "string" },
+    "lifecycle_state": { "enum": ["awaiting_approval", "approved", "review", "failed", "unresolved"] },
+    "external_release_state": { "enum": ["unapproved", "approved", "invalidated"] },
+    "fingerprint": { "type": "string" }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/software-output-contract.schema.json",
+  "title": "SoftwareOutputContract",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "entity_id", "created_at", "updated_at", "source_ref", "derived_from_plan", "domain_pack_id", "domain_pack_version", "spec_kind", "requirements", "acceptance", "verification_matrix", "release_boundaries", "contract_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "output-contract" },
+    "entity_id": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "derived_from_plan": { "type": "string" },
+    "domain_pack_id": { "const": "software-engineering" },
+    "domain_pack_version": { "type": "string" },
+    "spec_kind": { "const": "software-spec" },
+    "requirements": { "type": "array", "items": { "type": "object", "required": ["requirement_id", "statement", "source_ref", "basis_fingerprint"], "additionalProperties": false, "properties": { "requirement_id": { "type": "string" }, "statement": { "type": "string" }, "source_ref": { "type": "string" }, "basis_fingerprint": { "type": "string" } } } },
+    "acceptance": { "type": "array", "items": { "type": "object", "required": ["acceptance_id", "condition", "evidence_class", "source_ref"], "additionalProperties": false, "properties": { "acceptance_id": { "type": "string" }, "condition": { "type": "string" }, "evidence_class": { "enum": ["build", "test", "static", "manual", "hardware"] }, "source_ref": { "type": "string" } } } },
+    "verification_matrix": { "type": "array", "items": { "type": "object", "required": ["row_ref", "row_kind", "verification_class", "independent", "evidence_required"], "additionalProperties": false, "properties": { "row_ref": { "type": "string" }, "row_kind": { "enum": ["requirement", "acceptance"] }, "verification_class": { "enum": ["build", "test", "static", "manual", "hardware"] }, "independent": { "type": "boolean" }, "evidence_required": { "type": "boolean" } } } },
+    "release_boundaries": { "type": "object", "required": ["software_delivery_approval", "external_release_approval", "separate"], "additionalProperties": false, "properties": { "software_delivery_approval": { "type": "string" }, "external_release_approval": { "type": "string" }, "separate": { "const": true } } },
+    "contract_fingerprint": { "type": "string" }
+  }
+}

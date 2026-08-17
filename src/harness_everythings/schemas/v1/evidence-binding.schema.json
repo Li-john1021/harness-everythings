@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/evidence-binding.schema.json",
+  "title": "EvidenceBinding",
+  "type": "object",
+  "required": ["evidence_id", "record_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "evidence_id": { "type": "string" },
+    "record_fingerprint": { "type": "string" }
+  }
+}

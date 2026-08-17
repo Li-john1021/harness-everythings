@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/unresolved.schema.json",
+  "title": "UnresolvedItems",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "workspace_ref", "source_fingerprint", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "unresolved" },
+    "workspace_ref": { "type": "string" },
+    "source_fingerprint": { "type": "string" },
+    "items": { "type": "array", "items": { "type": "object" } }
+  }
+}

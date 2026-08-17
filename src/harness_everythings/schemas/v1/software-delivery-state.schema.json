@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/software-delivery-state.schema.json",
+  "title": "SoftwareDeliveryState",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "contract_ref", "artifact_refs", "review_ref", "review_status", "verification_refs", "verification_status", "work_product_approval_ref", "completion_status", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "software-delivery-state" },
+    "contract_ref": { "type": "string" },
+    "artifact_refs": { "type": "array", "items": { "type": "string" } },
+    "review_ref": { "type": "string" },
+    "review_status": { "enum": ["not_run", "passed", "failed", "blocked"] },
+    "verification_refs": { "type": "array", "items": { "type": "string" } },
+    "verification_status": { "enum": ["not_run", "passed", "failed", "blocked"] },
+    "work_product_approval_ref": { "type": "string" },
+    "completion_status": { "enum": ["unresolved", "complete", "blocked"] },
+    "fingerprint": { "type": "string" }
+  }
+}

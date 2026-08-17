@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/adapter-contract.schema.json",
+  "title": "AdapterContract",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "adapter_id", "adapter_kind", "version", "available", "missing", "degradation", "state_contract", "execution"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "adapter-contract" },
+    "adapter_id": { "type": "string" },
+    "adapter_kind": { "enum": ["runtime", "workspace"] },
+    "version": { "type": "string" },
+    "available": { "type": "array", "items": { "type": "string" } },
+    "missing": { "type": "array", "items": { "type": "string" } },
+    "degradation": { "type": "object" },
+    "state_contract": { "type": "object" },
+    "execution": { "enum": ["serial", "parallel"] },
+    "operations": { "type": "array", "items": { "type": "string" } },
+    "executes_project_scripts": { "type": "boolean" },
+    "network": { "type": "boolean" },
+    "credentials": { "type": "boolean" },
+    "discovery": { "type": "object" },
+    "write": { "type": "object" },
+    "git": { "type": "object" },
+    "workspace_kinds": { "type": "object" }
+  }
+}

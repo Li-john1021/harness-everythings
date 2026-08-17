@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/adapter-state.schema.json",
+  "title": "AdapterState",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "state_version", "runtime", "workspace", "state_fingerprint", "evidence_refs"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "adapter-state" },
+    "state_version": { "const": "1.0" },
+    "runtime": { "type": "object" },
+    "workspace": { "type": "object" },
+    "state_fingerprint": { "type": "string" },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } }
+  }
+}

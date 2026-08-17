@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/verification-binding.schema.json",
+  "title": "VerificationBinding",
+  "type": "object",
+  "required": ["verification_id", "record_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "verification_id": { "type": "string" },
+    "record_fingerprint": { "type": "string" }
+  }
+}

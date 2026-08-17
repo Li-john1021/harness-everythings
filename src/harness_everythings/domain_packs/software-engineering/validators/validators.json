@@ -1,0 +1,1 @@
+{"validators":[{"validator_id":"software-contract-shape","kind":"schema-and-traceability","deterministic":true,"human_gate":false},{"validator_id":"software-quality","kind":"code-quality","deterministic":false,"human_gate":true},{"validator_id":"software-verification","kind":"build-test-static-manual-hardware","deterministic":true,"human_gate":true}]}

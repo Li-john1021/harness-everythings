@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/traceability.schema.json",
+  "title": "Traceability",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "contract_ref", "requirements", "acceptance", "implementation", "evidence", "verification", "status", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "traceability" },
+    "contract_ref": { "type": "string" },
+    "requirements": { "type": "array", "items": { "type": "object", "required": ["requirement_id", "implementation_refs", "evidence_refs", "verification_refs", "status"], "additionalProperties": false, "properties": { "requirement_id": { "type": "string" }, "implementation_refs": { "type": "array", "items": { "type": "string" } }, "evidence_refs": { "type": "array", "items": { "type": "string" } }, "verification_refs": { "type": "array", "items": { "type": "string" } }, "status": { "enum": ["unresolved", "complete"] } } } },
+    "acceptance": { "type": "array", "items": { "type": "object", "required": ["acceptance_id", "implementation_refs", "evidence_refs", "verification_refs", "status"], "additionalProperties": false, "properties": { "acceptance_id": { "type": "string" }, "implementation_refs": { "type": "array", "items": { "type": "string" } }, "evidence_refs": { "type": "array", "items": { "type": "string" } }, "verification_refs": { "type": "array", "items": { "type": "string" } }, "status": { "enum": ["unresolved", "complete"] } } } },
+    "implementation": { "type": "array", "items": { "type": "string" } },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "verification": { "type": "array", "items": { "type": "string" } },
+    "status": { "enum": ["unresolved", "complete"] },
+    "fingerprint": { "type": "string" }
+  }
+}

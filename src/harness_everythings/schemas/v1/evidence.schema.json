@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/evidence.schema.json",
+  "title": "Evidence",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_id",
+    "entity_type",
+    "created_at",
+    "updated_at",
+    "source_ref",
+    "actor",
+    "action",
+    "conclusion_kind",
+    "supporting_refs",
+    "verification_level",
+    "user_confirmed",
+    "record_fingerprint"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_id": { "type": "string" },
+    "entity_type": { "const": "evidence" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "actor": { "type": "string" },
+    "action": { "type": "string" },
+    "conclusion_kind": {
+      "enum": ["observed", "inferred", "unresolved", "disproved", "user_confirmed"]
+    },
+    "supporting_refs": { "type": "array", "items": { "type": "string" } },
+    "verification_level": {
+      "enum": [
+        "designed",
+        "implemented",
+        "unit_tested",
+        "fixture_verified",
+        "replay_verified",
+        "user_confirmed_in_real_workflow",
+        "externally_reproduced"
+      ]
+    },
+    "user_confirmed": { "type": "boolean" },
+    "record_fingerprint": { "type": "string" }
+  }
+}

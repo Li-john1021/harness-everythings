@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/content-review.schema.json",
+  "title": "ContentReview",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "review_id", "brief_ref", "variant_refs", "selected_variant_ref", "claim_checks", "platform_checks", "prohibited_checks", "checks", "status", "evidence_refs", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "content-review" },
+    "review_id": { "type": "string" },
+    "brief_ref": { "type": "string" },
+    "variant_refs": { "type": "array", "items": { "type": "string" } },
+    "selected_variant_ref": { "type": "string" },
+    "claim_checks": { "type": "array", "items": { "type": "object", "required": ["claim_id", "source_refs", "observed", "expected", "status", "evidence_refs", "basis"], "additionalProperties": false, "properties": { "claim_id": { "type": "string" }, "source_refs": { "type": "array", "items": { "type": "string" } }, "observed": { "type": "object" }, "expected": { "type": "object" }, "status": { "enum": ["passed", "failed", "blocked"] }, "evidence_refs": { "type": "array", "items": { "type": "string" } }, "basis": { "type": "string" } } } },
+    "platform_checks": { "type": "array", "items": { "$ref": "content-review-check.schema.json" } },
+    "prohibited_checks": { "type": "array", "items": { "$ref": "content-review-check.schema.json" } },
+    "checks": { "type": "array", "items": { "$ref": "content-review-check.schema.json" } },
+    "status": { "enum": ["passed", "failed", "blocked"] },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "fingerprint": { "type": "string" }
+  }
+}

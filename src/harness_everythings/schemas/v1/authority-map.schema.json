@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/authority-map.schema.json",
+  "title": "AuthorityMap",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "workspace_ref", "source_fingerprint", "trusted", "candidate", "untrusted_content", "decision_required"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "authority-map" },
+    "workspace_ref": { "type": "string" },
+    "source_fingerprint": { "type": "string" },
+    "trusted": { "type": "array", "items": { "type": "object" } },
+    "candidate": { "type": "array", "items": { "type": "object" } },
+    "untrusted_content": { "type": "array", "items": { "type": "string" } },
+    "decision_required": { "type": "boolean" }
+  }
+}

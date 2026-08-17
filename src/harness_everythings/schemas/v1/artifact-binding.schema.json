@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/artifact-binding.schema.json",
+  "title": "ArtifactBinding",
+  "type": "object",
+  "required": ["artifact_id", "content_fingerprint", "record_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": { "type": "string" },
+    "content_fingerprint": { "type": "string" },
+    "record_fingerprint": { "type": "string" }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/role-registry.schema.json",
+  "title": "RoleRegistry",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "registry_version", "status", "source_fingerprint", "roles", "evidence_refs", "generated_at", "registry_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "role-registry" },
+    "registry_version": { "const": "1.0" },
+    "status": { "enum": ["blocked", "proposed", "active"] },
+    "source_fingerprint": { "type": "string" },
+    "roles": { "type": "array", "items": { "$ref": "role.schema.json" } },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "generated_at": { "type": "string" },
+    "registry_fingerprint": { "type": "string" }
+  }
+}

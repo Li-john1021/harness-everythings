@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/software-review.schema.json",
+  "title": "SoftwareReview",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "review_id", "contract_ref", "contract_fingerprint", "artifact_refs", "artifact_bindings", "evidence_refs", "evidence_bindings", "spec_compliance", "implementation_quality", "status", "findings", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "software-review" },
+    "review_id": { "type": "string" },
+    "contract_ref": { "type": "string" },
+    "contract_fingerprint": { "type": "string" },
+    "artifact_refs": { "type": "array", "items": { "type": "string" } },
+    "artifact_bindings": { "type": "array", "items": { "$ref": "artifact-binding.schema.json" } },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "evidence_bindings": { "type": "array", "items": { "$ref": "evidence-binding.schema.json" } },
+    "spec_compliance": { "enum": ["passed", "failed", "blocked", "not_run"] },
+    "implementation_quality": { "enum": ["passed", "failed", "blocked", "not_run"] },
+    "status": { "enum": ["passed", "failed", "blocked", "not_run"] },
+    "findings": { "type": "array", "items": { "type": "string" } },
+    "fingerprint": { "type": "string" }
+  }
+}

@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"harness-everythings/domain-packs/content-script/output-contract.schema.json","title":"ContentOutputContractExtension","type":"object","required":["variant_policy"],"additionalProperties":true,"properties":{"variant_policy":{"type":"object"}}}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/checkpoint.schema.json",
+  "title": "Checkpoint",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "checkpoint_id", "owner_role", "state", "completed_refs", "incomplete_refs", "resume_preconditions", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "checkpoint" },
+    "checkpoint_id": { "type": "string" },
+    "owner_role": { "type": "string" },
+    "state": { "enum": ["running", "paused", "partial_success", "failed", "complete"] },
+    "completed_refs": { "type": "array", "items": { "type": "string" } },
+    "incomplete_refs": { "type": "array", "items": { "type": "string" } },
+    "resume_preconditions": { "type": "array", "items": { "type": "string" } },
+    "fingerprint": { "type": "string" }
+  }
+}

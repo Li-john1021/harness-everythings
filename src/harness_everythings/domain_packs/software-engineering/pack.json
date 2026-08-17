@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "entity_type": "domain-pack-manifest",
+  "pack_id": "software-engineering",
+  "pack_version": "1.0",
+  "kernel_min_version": "1.0",
+  "license": "pending-local-review",
+  "supported_workspace_types": ["source-workspace", "mixed-workspace"],
+  "supported_artifact_types": ["source-change", "verification-report", "delivery-record"],
+  "runtime_capabilities": {
+    "required": ["filesystem-read", "filesystem-write"],
+    "optional": ["process-execution", "version-control", "parallel-agents"]
+  },
+  "stages": [
+    {"stage_id":"requirements","canonical_state":"ready","entry_conditions":["plan-approved"],"exit_conditions":["requirements-traced"]},
+    {"stage_id":"architecture","canonical_state":"ready","entry_conditions":["requirements-traced"],"exit_conditions":["architecture-reviewed"]},
+    {"stage_id":"implementation","canonical_state":"running","entry_conditions":["architecture-reviewed"],"exit_conditions":["implementation-evidence"]},
+    {"stage_id":"review","canonical_state":"review","entry_conditions":["implementation-evidence"],"exit_conditions":["quality-and-contract-reviewed"]},
+    {"stage_id":"build-test","canonical_state":"validation","entry_conditions":["quality-and-contract-reviewed"],"exit_conditions":["verification-evidence"]},
+    {"stage_id":"delivery","canonical_state":"awaiting_approval","entry_conditions":["verification-evidence"],"exit_conditions":["software-delivery-approved"]}
+  ],
+  "role_templates": [
+    {"role_id":"software-requirements","role_contract_version":"1.0","mission":"Turn an approved Plan into traceable software requirements.","permissions":["read:plan","read:output-contract","write:proposal"],"owns":["software:requirements"],"forbids":["source:private","external:release"],"capabilities":["requirements-tracing"],"input_contract_refs":["plan@1.0","output-contract@1.0"],"output_contract_refs":["artifact@1.0","evidence@1.0","traceability@1.0"],"artifact_obligations":[{"kind":"artifact","contract_ref":"artifact@1.0","required":true}],"evidence_obligations":[{"kind":"evidence","contract_ref":"evidence@1.0","required":true}],"verification":{"methods":["manual","static"],"independent":false,"evidence_required":true},"stop_conditions":["missing-approval","missing-evidence","ownership-conflict"],"dependencies":[],"concurrency_boundaries":{"shared":["plan","output-contract"],"exclusive":["software:requirements"]},"merge_group":"planning"},
+    {"role_id":"software-architecture","role_contract_version":"1.0","mission":"Define architecture decisions and their verification basis.","permissions":["read:plan","read:output-contract","write:proposal"],"owns":["software:architecture"],"forbids":["source:private","external:release"],"capabilities":["architecture-review"],"input_contract_refs":["plan@1.0","output-contract@1.0"],"output_contract_refs":["artifact@1.0","evidence@1.0","traceability@1.0"],"artifact_obligations":[{"kind":"artifact","contract_ref":"artifact@1.0","required":true}],"evidence_obligations":[{"kind":"evidence","contract_ref":"evidence@1.0","required":true}],"verification":{"methods":["manual","static"],"independent":false,"evidence_required":true},"stop_conditions":["missing-approval","missing-evidence","ownership-conflict"],"dependencies":["software-requirements"],"concurrency_boundaries":{"shared":["plan","output-contract"],"exclusive":["software:architecture"]},"merge_group":"design"},
+    {"role_id":"software-implementation","role_contract_version":"1.0","mission":"Implement approved software changes within the output contract.","permissions":["read:plan","read:output-contract","write:proposal"],"owns":["software:implementation"],"forbids":["approval:own-work","external:release"],"capabilities":["implementation"],"input_contract_refs":["plan@1.0","output-contract@1.0"],"output_contract_refs":["artifact@1.0","evidence@1.0","traceability@1.0"],"artifact_obligations":[{"kind":"artifact","contract_ref":"artifact@1.0","required":true}],"evidence_obligations":[{"kind":"evidence","contract_ref":"evidence@1.0","required":true}],"verification":{"methods":["build","test"],"independent":false,"evidence_required":true},"stop_conditions":["missing-approval","missing-evidence","ownership-conflict"],"dependencies":["software-architecture"],"concurrency_boundaries":{"shared":["plan","output-contract"],"exclusive":["software:implementation"]},"merge_group":"implementation"},
+    {"role_id":"software-review","role_contract_version":"1.0","mission":"Independently review code quality and output-contract conformity.","permissions":["read:plan","read:output-contract","write:proposal"],"owns":["software:review"],"forbids":["approval:own-work","external:release"],"capabilities":["independent-review"],"input_contract_refs":["plan@1.0","output-contract@1.0"],"output_contract_refs":["artifact@1.0","evidence@1.0","traceability@1.0"],"artifact_obligations":[{"kind":"artifact","contract_ref":"artifact@1.0","required":true}],"evidence_obligations":[{"kind":"evidence","contract_ref":"evidence@1.0","required":true}],"verification":{"methods":["manual","static"],"independent":true,"evidence_required":true},"stop_conditions":["missing-approval","missing-evidence","ownership-conflict"],"dependencies":["software-implementation"],"concurrency_boundaries":{"shared":["plan","output-contract"],"exclusive":["software:review"]},"merge_group":"review"},
+    {"role_id":"software-build-test","role_contract_version":"1.0","mission":"Produce reproducible build and test evidence.","permissions":["read:plan","read:output-contract","write:proposal"],"owns":["software:verification"],"forbids":["source:private","external:release"],"capabilities":["build-test"],"input_contract_refs":["plan@1.0","output-contract@1.0"],"output_contract_refs":["artifact@1.0","evidence@1.0","traceability@1.0"],"artifact_obligations":[{"kind":"artifact","contract_ref":"artifact@1.0","required":true}],"evidence_obligations":[{"kind":"evidence","contract_ref":"evidence@1.0","required":true}],"verification":{"methods":["build","test"],"independent":false,"evidence_required":true},"stop_conditions":["missing-approval","missing-evidence","ownership-conflict"],"dependencies":["software-implementation"],"concurrency_boundaries":{"shared":["plan","output-contract"],"exclusive":["software:verification"]},"merge_group":"verification"},
+    {"role_id":"software-documentation-governance","role_contract_version":"1.0","mission":"Record delivery documentation, risks, and governance evidence.","permissions":["read:plan","read:output-contract","write:proposal"],"owns":["software:documentation","software:governance"],"forbids":["external:release"],"capabilities":["documentation","governance"],"input_contract_refs":["plan@1.0","output-contract@1.0"],"output_contract_refs":["artifact@1.0","evidence@1.0","traceability@1.0"],"artifact_obligations":[{"kind":"artifact","contract_ref":"artifact@1.0","required":true}],"evidence_obligations":[{"kind":"evidence","contract_ref":"evidence@1.0","required":true}],"verification":{"methods":["manual","static"],"independent":false,"evidence_required":true},"stop_conditions":["missing-approval","missing-evidence","ownership-conflict"],"dependencies":["software-review","software-build-test"],"concurrency_boundaries":{"shared":["plan","output-contract"],"exclusive":["software:documentation","software:governance"]},"merge_group":"governance"}
+  ],
+  "validators": [
+    {"validator_id":"software-contract-shape","kind":"schema-and-traceability","deterministic":true,"human_gate":false},
+    {"validator_id":"software-quality","kind":"code-quality","deterministic":false,"human_gate":true},
+    {"validator_id":"software-verification","kind":"build-test-static-manual-hardware","deterministic":true,"human_gate":true}
+  ],
+  "verification_classes":["build","test","static","manual","hardware"],
+  "release_approval":{"delivery_scope":"work_product","external_release_scope":"external_release","separate_approval_required":true},
+  "generation_basis":["ownership","risk","verification","concurrency"],
+  "external_tools":[],"models":[],"network":{"allowed":false,"destinations":[]},"credentials":{"required":false,"kinds":[]},"publishing":{"allowed":false,"approval_scope":"external_release"},"publication":{"allowed":false,"approval_scope":"external_release"},
+  "capabilities":{"discovery":["plan","workspace"],"execution":["proposal","artifact"],"verification":["build","test","static","manual","hardware"]},
+  "context_routes":[{"route_id":"software-governance","purpose":"approved plan and contract governance","owner_role_id":"domain-pack","allowed_sensitivity":["public","internal"]}],
+  "compatibility": {
+    "supported_kernel_versions": ["1.0"],
+    "supported_pack_versions": ["1.0"],
+    "migration_from_pack_versions": [],
+    "migration_strategy": "explicit-versioned-manifest"
+  },
+  "deprecation": {
+    "status": "active",
+    "deprecated_since": "",
+    "removal_version": "",
+    "replacement_pack_id": "",
+    "policy": "announce replacement and migration path before removal"
+  },
+  "fixtures": [
+    {"fixture_id":"software-normal-closure","path":"fixtures/normal-closure.json","scenario_type":"normal-closure","fingerprint":"sha256:025ef51dc5ee1bc9cb00043769766f6f567b7a2e42c22da6c8b8fac890cf75aa"},
+    {"fixture_id":"software-controlled-recovery","path":"fixtures/controlled-recovery.json","scenario_type":"controlled-failure-recovery","fingerprint":"sha256:92eb9e50f70e2522f5b756bed57ffb10a339371adb9f01eb2f2a2a78ceab3ffc"}
+  ],
+  "fingerprint":"sha256:3b5e710492dcbe1bf03aa7169db651b723b9b309c649663e006aba6f0d94a549"
+}

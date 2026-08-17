@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/role.schema.json",
+  "title": "Role",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_id",
+    "entity_type",
+    "created_at",
+    "updated_at",
+    "source_ref",
+    "role_id",
+    "role_contract_version",
+    "role_name",
+    "mission",
+    "permissions",
+    "lifecycle_state",
+    "owns",
+    "forbids",
+    "capabilities",
+    "input_contract_refs",
+    "output_contract_refs",
+    "artifact_obligations",
+    "evidence_obligations",
+    "verification",
+    "stop_conditions",
+    "dependencies",
+    "concurrency_boundaries",
+    "generation_origin",
+    "lifecycle_history",
+    "contract_fingerprint"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_id": { "type": "string" },
+    "entity_type": { "const": "role" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "role_id": { "type": "string" },
+    "role_contract_version": { "const": "1.0" },
+    "role_name": { "type": "string" },
+    "mission": { "type": "string" },
+    "permissions": { "type": "array", "items": { "type": "string" } },
+    "lifecycle_state": {
+      "enum": ["proposed", "active", "merged", "split", "deprecated", "retired"]
+    },
+    "owns": { "type": "array", "items": { "type": "string" } },
+    "forbids": { "type": "array", "items": { "type": "string" } },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "input_contract_refs": { "type": "array", "items": { "type": "string" } },
+    "output_contract_refs": { "type": "array", "items": { "type": "string" } },
+    "artifact_obligations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "contract_ref", "required"],
+        "additionalProperties": false,
+        "properties": {
+          "kind": { "type": "string" },
+          "contract_ref": { "type": "string" },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "evidence_obligations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "contract_ref", "required"],
+        "additionalProperties": false,
+        "properties": {
+          "kind": { "type": "string" },
+          "contract_ref": { "type": "string" },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["methods", "independent", "evidence_required"],
+      "additionalProperties": false,
+      "properties": {
+        "methods": { "type": "array", "items": { "type": "string" } },
+        "independent": { "type": "boolean" },
+        "evidence_required": { "type": "boolean" }
+      }
+    },
+    "stop_conditions": { "type": "array", "items": { "type": "string" } },
+    "dependencies": { "type": "array", "items": { "type": "string" } },
+    "concurrency_boundaries": {
+      "type": "object",
+      "required": ["shared", "exclusive"],
+      "additionalProperties": false,
+      "properties": {
+        "shared": { "type": "array", "items": { "type": "string" } },
+        "exclusive": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "generation_origin": {
+      "enum": ["kernel-default", "domain-pack", "generated-overlay", "user"]
+    },
+    "lifecycle_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from_state", "to_state", "changed_at", "evidence_ref", "transition_fingerprint"],
+        "additionalProperties": false,
+        "properties": {
+          "from_state": { "type": "string" },
+          "to_state": { "enum": ["proposed", "active", "merged", "split", "deprecated", "retired"] },
+          "changed_at": { "type": "string" },
+          "evidence_ref": { "type": "string" },
+          "transition_fingerprint": { "type": "string" }
+        }
+      }
+    },
+    "contract_fingerprint": { "type": "string" }
+  }
+}

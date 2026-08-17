@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/artifact.schema.json",
+  "title": "Artifact",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_id",
+    "entity_type",
+    "created_at",
+    "updated_at",
+    "source_ref",
+    "artifact_kind",
+    "content_fingerprint",
+    "record_fingerprint",
+    "sensitivity"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_id": { "type": "string" },
+    "entity_type": { "const": "artifact" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "artifact_kind": {
+      "enum": ["text", "code", "structured", "image", "audio", "video", "report", "reference"]
+    },
+    "content_fingerprint": { "type": "string" },
+    "record_fingerprint": { "type": "string" },
+    "location_ref": { "type": "string" },
+    "metadata": { "type": "object" },
+    "contract_ref": { "type": "string" },
+    "contract_fingerprint": { "type": "string" },
+    "source_boundary": { "type": "array", "items": { "type": "string" } },
+    "evidence_boundary": { "type": "array", "items": { "type": "string" } },
+    "sensitivity": {
+      "enum": ["public", "internal", "personal", "secret", "employer", "licensed"]
+    }
+  }
+}

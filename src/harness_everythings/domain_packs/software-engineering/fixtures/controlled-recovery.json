@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "entity_type": "domain-pack-fixture",
+  "fixture_id": "software-controlled-recovery",
+  "pack_id": "software-engineering",
+  "pack_version": "1.0",
+  "scenario_type": "controlled-failure-recovery",
+  "workspace_type": "source-workspace",
+  "artifact_types": ["source-change", "verification-report"],
+  "stage_sequence": ["requirements", "architecture", "implementation", "review", "build-test", "delivery"],
+  "validator_ids": ["software-contract-shape", "software-quality", "software-verification"],
+  "expected_outcome": "recovered",
+  "failure": {"injected_stage_id": "build-test", "reason": "verification evidence rejected", "recovery_stage_id": "implementation"}
+}

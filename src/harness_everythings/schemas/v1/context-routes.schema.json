@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/context-routes.schema.json",
+  "title": "ContextRoutes",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "routing_version", "routes", "rejected_sources", "routing_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "context-routes" },
+    "routing_version": { "const": "1.0" },
+    "routes": { "type": "array", "items": { "$ref": "context-route.schema.json" } },
+    "rejected_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "reason", "basis"],
+        "additionalProperties": false,
+        "properties": {
+          "source_id": { "type": "string" },
+          "reason": { "type": "string" },
+          "basis": { "type": "string" }
+        }
+      }
+    },
+    "routing_fingerprint": { "type": "string" }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/content-brief.schema.json",
+  "title": "ContentBrief",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "entity_id", "created_at", "updated_at", "source_ref", "audience", "goals", "claims", "sources", "structure", "length", "tone", "platform", "prohibited", "cta", "lifecycle_state", "transitions"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "content-brief" },
+    "entity_id": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "audience": { "type": "string", "minLength": 1 },
+    "goals": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "claims": { "type": "array", "items": { "type": "object", "required": ["claim_id", "text", "source_refs"], "additionalProperties": false, "properties": { "claim_id": { "type": "string" }, "text": { "type": "string" }, "source_refs": { "type": "array", "items": { "type": "string" } } } } },
+    "sources": { "type": "array", "items": { "type": "object", "required": ["source_ref", "source_fingerprint", "sensitivity"], "additionalProperties": false, "properties": { "source_ref": { "type": "string" }, "source_fingerprint": { "type": "string" }, "sensitivity": { "enum": ["public", "internal", "licensed"] } } } },
+    "structure": { "type": "array", "items": { "type": "string" } },
+    "length": { "type": "object", "required": ["min_words", "max_words"], "additionalProperties": false, "properties": { "min_words": { "type": "integer" }, "max_words": { "type": "integer" } } },
+    "tone": { "type": "string" },
+    "platform": { "type": "string" },
+    "prohibited": { "type": "array", "items": { "type": "string" } },
+    "cta": { "type": "string" },
+    "lifecycle_state": { "enum": ["brief", "outline", "draft", "variants", "review", "awaiting_approval", "approved", "paused", "partial_success", "failed"] },
+    "transitions": { "type": "array", "items": { "type": "object", "required": ["from_state", "to_state", "actor", "reason", "evidence_ref", "at"], "additionalProperties": false, "properties": { "from_state": { "type": "string" }, "to_state": { "type": "string" }, "actor": { "type": "string" }, "reason": { "type": "string" }, "evidence_ref": { "type": "string" }, "at": { "type": "string" } } } }
+  }
+}

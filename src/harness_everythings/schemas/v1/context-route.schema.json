@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/context-route.schema.json",
+  "title": "ContextRoute",
+  "type": "object",
+  "required": ["schema_version", "route_id", "role_id", "owner", "purpose", "source_refs", "source_fingerprints", "sensitivity", "estimated_tokens", "max_tokens", "max_token_budget", "invalidation_conditions", "rejected_sources"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "route_id": { "type": "string" },
+    "role_id": { "type": "string" },
+    "owner": { "type": "string" },
+    "purpose": { "type": "string" },
+    "source_refs": { "type": "array", "items": { "type": "string" } },
+    "source_fingerprints": { "type": "array", "items": { "type": "string" } },
+    "sensitivity": { "type": "array", "items": { "enum": ["public", "internal", "licensed"] } },
+    "estimated_tokens": { "type": "integer" },
+    "max_tokens": { "type": "integer" },
+    "max_token_budget": { "type": "integer" },
+    "invalidation_conditions": { "type": "array", "items": { "type": "string" } },
+    "rejected_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "reason", "basis"],
+        "additionalProperties": false,
+        "properties": {
+          "source_id": { "type": "string" },
+          "reason": { "type": "string" },
+          "basis": { "type": "string" }
+        }
+      }
+    }
+  }
+}

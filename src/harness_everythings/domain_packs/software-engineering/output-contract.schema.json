@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"harness-everythings/domain-packs/software-engineering/output-contract.schema.json","title":"SoftwareOutputContractExtension","type":"object","required":["requirements","acceptance"],"additionalProperties":true,"properties":{"requirements":{"type":"array"},"acceptance":{"type":"array"}}}

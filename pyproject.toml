@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harness-everythings"
+version = "0.1.0"
+description = "Domain-agnostic agent production governance kernel (clean-room implementation)"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+harness-everythings = "harness_everythings.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+harness_everythings = ["schemas/v1/*.json", "domain_packs/*/*.json", "domain_packs/*/*.md", "domain_packs/*/*/*.json", "domain_packs/*/*/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

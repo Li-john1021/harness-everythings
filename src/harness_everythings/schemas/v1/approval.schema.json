@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/approval.schema.json",
+  "title": "Approval",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_id",
+    "entity_type",
+    "created_at",
+    "updated_at",
+    "source_ref",
+    "target_ref",
+    "scope",
+    "requester",
+    "approver",
+    "decision",
+    "decided_at",
+    "approval_fingerprint"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_id": { "type": "string" },
+    "entity_type": { "const": "approval" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string", "minLength": 1 },
+    "target_ref": { "type": "string", "minLength": 1 },
+    "scope": {
+      "enum": ["work_product", "external_release"]
+    },
+    "requester": { "type": "string", "minLength": 1 },
+    "approver": { "type": "string", "minLength": 1 },
+    "target_owner": { "type": "string", "minLength": 1 },
+    "plan_ref": { "type": "string" },
+    "plan_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "brief_ref": { "type": "string" },
+    "brief_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "variant_ref": { "type": "string" },
+    "variant_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "review_ref": { "type": "string" },
+    "review_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "contract_ref": { "type": "string" },
+    "contract_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "artifact_refs": { "type": "array", "items": { "type": "string" } },
+    "artifact_bindings": { "type": "array", "items": { "$ref": "artifact-binding.schema.json" } },
+    "verification_refs": { "type": "array", "items": { "type": "string" } },
+    "verification_bindings": { "type": "array", "items": { "$ref": "verification-binding.schema.json" } },
+    "evidence_bindings": { "type": "array", "items": { "$ref": "evidence-binding.schema.json" } },
+    "work_product_approval_ref": { "type": "string" },
+    "work_product_approval_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "governance_proposal_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "approval_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "decision": {
+      "enum": ["approved", "rejected", "withdrawn"]
+    },
+    "decided_at": { "type": "string" }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/artifact-events.schema.json",
+  "title": "ArtifactEvents",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "owner_ref", "events", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "artifact-events" },
+    "owner_ref": { "type": "string" },
+    "events": { "type": "array", "items": { "$ref": "artifact.schema.json" } },
+    "fingerprint": { "type": "string" }
+  }
+}

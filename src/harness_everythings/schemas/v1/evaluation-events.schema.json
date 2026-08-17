@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/evaluation-events.schema.json",
+  "title": "EvaluationEvents",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "owner_ref", "events", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "evaluation-events" },
+    "owner_ref": { "type": "string" },
+    "events": { "type": "array", "items": { "$ref": "evaluation.schema.json" } },
+    "fingerprint": { "type": "string" }
+  }
+}

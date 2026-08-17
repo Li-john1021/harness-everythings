@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "entity_type": "domain-pack-fixture",
+  "fixture_id": "content-normal-closure",
+  "pack_id": "content-script",
+  "pack_version": "1.0",
+  "scenario_type": "normal-closure",
+  "workspace_type": "content-workspace",
+  "artifact_types": ["research-record", "script-variant", "content-review"],
+  "stage_sequence": ["brief", "outline", "draft", "variants", "fact-check-edit", "approval"],
+  "validator_ids": ["content-brief-shape", "content-claims", "content-platform"],
+  "expected_outcome": "completed",
+  "failure": {"injected_stage_id": "", "reason": "", "recovery_stage_id": ""}
+}

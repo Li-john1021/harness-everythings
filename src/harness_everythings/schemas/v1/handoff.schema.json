@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/handoff.schema.json",
+  "title": "Handoff",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_id",
+    "entity_type",
+    "created_at",
+    "updated_at",
+    "source_ref",
+    "checkpoint",
+    "incomplete_items",
+    "resume_preconditions",
+    "receiver",
+    "fingerprint"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_id": { "type": "string" },
+    "entity_type": { "const": "handoff" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "checkpoint": { "type": "object" },
+    "incomplete_items": { "type": "array", "items": { "type": "string" } },
+    "resume_preconditions": { "type": "array", "items": { "type": "string" } },
+    "receiver": { "type": "string" },
+    "fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/verification-result.schema.json",
+  "title": "VerificationResult",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "verification_id", "row_ref", "row_kind", "verification_class", "status", "deterministic", "contract_ref", "contract_fingerprint", "tool_result_source", "record_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "verification-result" },
+    "verification_id": { "type": "string" },
+    "row_ref": { "type": "string" },
+    "row_kind": { "enum": ["requirement", "acceptance"] },
+    "verification_class": { "enum": ["build", "test", "static", "manual", "hardware"] },
+    "status": { "enum": ["passed", "failed", "blocked", "not_run"] },
+    "deterministic": { "type": "boolean" },
+    "evidence_ref": { "type": "string" },
+    "artifact_refs": { "type": "array", "items": { "type": "string" } },
+    "contract_ref": { "type": "string" },
+    "contract_fingerprint": { "type": "string" },
+    "tool_result_source": { "type": "string" },
+    "evidence_fingerprint": { "type": "string" },
+    "record_fingerprint": { "type": "string" }
+  }
+}

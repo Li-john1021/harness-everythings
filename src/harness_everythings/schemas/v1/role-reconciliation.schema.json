@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/role-reconciliation.schema.json",
+  "title": "RoleReconciliation",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "source_fingerprint", "retained", "additions", "conflicts", "drift", "merge_candidates", "split_candidates", "deprecations", "lost_basis", "user_overlay_unchanged", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "role-reconciliation" },
+    "source_fingerprint": { "type": "string" },
+    "retained": { "type": "array", "items": { "type": "object" } },
+    "additions": { "type": "array", "items": { "type": "object" } },
+    "conflicts": { "type": "array", "items": { "type": "object" } },
+    "drift": { "type": "array", "items": { "type": "object" } },
+    "merge_candidates": { "type": "array", "items": { "type": "object" } },
+    "split_candidates": { "type": "array", "items": { "type": "object" } },
+    "deprecations": { "type": "array", "items": { "type": "object" } },
+    "lost_basis": { "type": "array", "items": { "type": "object" } },
+    "user_overlay_unchanged": { "type": "boolean" },
+    "fingerprint": { "type": "string" }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/application-manifest.schema.json",
+  "title": "ApplicationManifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_type",
+    "workspace_fingerprint",
+    "idempotency_key",
+    "created_at",
+    "writes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "application-manifest" },
+    "workspace_fingerprint": { "type": "string" },
+    "idempotency_key": { "type": "string" },
+    "created_at": { "type": "string" },
+    "snapshot_workspace": { "type": "boolean" },
+    "snapshot_excludes": { "type": "array", "items": { "type": "string" } },
+    "writes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rel", "exclusive", "target_fingerprint"],
+        "additionalProperties": false,
+        "properties": {
+          "rel": { "type": "string" },
+          "exclusive": { "type": "boolean" },
+          "expected_before_fingerprint": { "type": "string" },
+          "target_fingerprint": { "type": "string" }
+        }
+      }
+    }
+  }
+}

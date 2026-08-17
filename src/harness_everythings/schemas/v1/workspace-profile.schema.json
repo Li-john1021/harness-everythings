@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/workspace-profile.schema.json",
+  "title": "WorkspaceProfile",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "workspace_ref", "source_fingerprint", "generated_at", "records"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "workspace-profile" },
+    "workspace_ref": { "type": "string" },
+    "source_fingerprint": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "records": { "type": "array", "items": { "type": "object" } }
+  }
+}

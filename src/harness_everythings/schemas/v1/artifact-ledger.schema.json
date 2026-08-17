@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/artifact-ledger.schema.json",
+  "title": "ArtifactLedger",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "owner_ref", "artifacts", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "artifact-ledger" },
+    "owner_ref": { "type": "string" },
+    "artifacts": { "type": "array", "items": { "$ref": "artifact.schema.json" } },
+    "fingerprint": { "type": "string" }
+  }
+}

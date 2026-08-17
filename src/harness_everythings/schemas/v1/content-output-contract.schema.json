@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/content-output-contract.schema.json",
+  "title": "ContentOutputContract",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "entity_id", "created_at", "updated_at", "source_ref", "brief_ref", "pack_id", "pack_version", "output_requirements", "claim_source_rules", "hard_constraints", "variant_policy", "approval_boundaries", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "content-output-contract" },
+    "entity_id": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "brief_ref": { "type": "string" },
+    "pack_id": { "const": "content-script" },
+    "pack_version": { "type": "string" },
+    "output_requirements": { "type": "array", "items": { "type": "object", "required": ["requirement_id", "condition", "validator"], "additionalProperties": false, "properties": { "requirement_id": { "type": "string" }, "condition": { "type": "string" }, "validator": { "type": "string" } } } },
+    "claim_source_rules": { "type": "array", "items": { "type": "object", "required": ["claim_id", "required_source_refs"], "additionalProperties": false, "properties": { "claim_id": { "type": "string" }, "required_source_refs": { "type": "array", "items": { "type": "string" } } } } },
+    "hard_constraints": { "type": "object", "required": ["platform", "min_words", "max_words", "required_structure", "prohibited", "cta"], "additionalProperties": false, "properties": { "platform": { "type": "string" }, "min_words": { "type": "integer" }, "max_words": { "type": "integer" }, "required_structure": { "type": "array", "items": { "type": "string" } }, "prohibited": { "type": "array", "items": { "type": "string" } }, "cta": { "type": "string" } } },
+    "variant_policy": { "type": "object", "required": ["preserve_all", "user_selection_required"], "additionalProperties": false, "properties": { "preserve_all": { "const": true }, "user_selection_required": { "const": true } } },
+    "approval_boundaries": { "type": "object", "required": ["creation_scope", "external_release_scope", "separate"], "additionalProperties": false, "properties": { "creation_scope": { "const": "work_product" }, "external_release_scope": { "const": "external_release" }, "separate": { "const": true } } },
+    "fingerprint": { "type": "string" }
+  }
+}

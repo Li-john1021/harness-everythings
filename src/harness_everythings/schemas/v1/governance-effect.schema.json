@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/governance-effect.schema.json",
+  "title": "GovernanceEffect",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "proposal_ref", "proposal_fingerprint", "approval_ref", "approval_fingerprint", "application_fingerprint", "action", "before_fingerprint", "after_fingerprint", "rollback_ref", "effect_status"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "governance-effect" },
+    "proposal_ref": { "type": "string" },
+    "proposal_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "approval_ref": { "type": "string" },
+    "approval_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "application_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "action": { "enum": ["proposed", "approved", "applied", "rolled_back", "rejected"] },
+    "before_fingerprint": { "type": "string" },
+    "after_fingerprint": { "type": "string" },
+    "rollback_ref": { "type": "string" },
+    "effect_status": { "enum": ["no-change", "changed", "failed"] }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/content-variant.schema.json",
+  "title": "ContentVariant",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "variant_id", "brief_ref", "content", "claim_refs", "status", "content_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "content-variant" },
+    "variant_id": { "type": "string" },
+    "brief_ref": { "type": "string" },
+    "content": { "type": "string" },
+    "claim_refs": { "type": "array", "items": { "type": "string" } },
+    "status": { "enum": ["candidate", "selected", "rejected", "preserved"] },
+    "content_fingerprint": { "type": "string" }
+  }
+}

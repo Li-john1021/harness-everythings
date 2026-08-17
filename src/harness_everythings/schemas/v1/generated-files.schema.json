@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/generated-files.schema.json",
+  "title": "GeneratedFiles",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "files", "registry_fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "generated-files" },
+    "registry_fingerprint": { "type": "string" },
+    "files": { "type": "array", "items": { "type": "object" } }
+  }
+}

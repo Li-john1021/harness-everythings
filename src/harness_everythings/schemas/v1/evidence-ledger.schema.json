@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/evidence-ledger.schema.json",
+  "title": "EvidenceLedger",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "owner_ref", "evidence", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "evidence-ledger" },
+    "owner_ref": { "type": "string" },
+    "evidence": { "type": "array", "items": { "$ref": "evidence.schema.json" } },
+    "fingerprint": { "type": "string" }
+  }
+}

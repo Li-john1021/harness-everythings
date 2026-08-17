@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/verification-results.schema.json",
+  "title": "VerificationResults",
+  "type": "object",
+  "required": ["schema_version", "entity_type", "contract_ref", "results", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_type": { "const": "verification-results" },
+    "contract_ref": { "type": "string" },
+    "results": { "type": "array", "items": { "$ref": "verification-result.schema.json" } },
+    "fingerprint": { "type": "string" }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/task.schema.json",
+  "title": "Task",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_id",
+    "entity_type",
+    "created_at",
+    "updated_at",
+    "source_ref",
+    "state",
+    "owner_role",
+    "budget",
+    "retry_policy",
+    "idempotency_key",
+    "transitions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_id": { "type": "string" },
+    "entity_type": { "const": "task" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "state": {
+      "enum": [
+        "proposed",
+        "ready",
+        "running",
+        "paused",
+        "review",
+        "validation",
+        "awaiting_approval",
+        "delivered",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "owner_role": { "type": "string" },
+    "budget": { "type": "object" },
+    "retry_policy": {
+      "enum": ["safe_auto", "manual", "never"]
+    },
+    "idempotency_key": { "type": "string" },
+    "artifacts_owned": { "type": "array", "items": { "type": "string" } },
+    "transitions": { "type": "array", "items": { "type": "object" } },
+    "checkpoint": { "type": "object" }
+  }
+}

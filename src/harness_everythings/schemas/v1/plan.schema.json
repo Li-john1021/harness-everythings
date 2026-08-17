@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "harness-everythings/v1/plan.schema.json",
+  "title": "Plan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entity_id",
+    "entity_type",
+    "created_at",
+    "updated_at",
+    "source_ref",
+    "goals",
+    "scope",
+    "decisions",
+    "risks",
+    "stages",
+    "acceptance_strategy",
+    "approval_state"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "entity_id": { "type": "string" },
+    "entity_type": { "const": "plan" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_ref": { "type": "string" },
+    "goals": { "type": "array", "items": { "type": "string" } },
+    "scope": { "type": "object" },
+    "decisions": { "type": "array", "items": { "type": "object" } },
+    "risks": { "type": "array", "items": { "type": "object" } },
+    "stages": { "type": "array", "items": { "type": "string" } },
+    "acceptance_strategy": { "type": "object" },
+    "approval_state": {
+      "enum": ["proposed", "approved", "rejected", "withdrawn"]
+    }
+  }
+}
